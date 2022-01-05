@@ -6,5 +6,5 @@ void main(List<String> arguments) {
 }
 
 void testing() {
-  print('text');
+  print('raimu');
 }

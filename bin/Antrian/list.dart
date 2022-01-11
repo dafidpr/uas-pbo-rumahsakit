@@ -1,14 +1,14 @@
 import 'antrian .dart';
 
 class LinkedList {
-  late Antrian head;
+  late Antrian? head;
 
   LinkedList() {
     head = null;
   }
 
   bool isEmpty() {
-    if (head == Null) {
+    if (head == null) {
       return true;
     } else {
       return false;
@@ -41,26 +41,26 @@ class LinkedList {
         head = head.next;
       } else {
         bantu = head;
-        if (bantu.next == Null) {
+        if (bantu.next == null) {
           print("ANTRIAN KOSONG");
         } else {
           while (!bantu.next.tipe.equals(tipe)) {
-            if (bantu.next.next == Null) {
-              bantu = Null;
+            if (bantu.next.next == null) {
+              bantu = null;
               break;
             }
             bantu = bantu.next;
           }
-          if (bantu == Null) {
+          if (bantu == null) {
             print("ANTRIAN KOOSNG");
-          } else if (bantu.next.next == Null) {
+          } else if (bantu.next.next == null) {
             print(bantu.next.key + bantu.next.tipe);
-            bantu.next = Null;
+            bantu.next = null;
           } else {
             print(bantu.next.key + bantu.next.tipe);
             hapus = bantu.next;
             bantu.next = hapus.next;
-            hapus.next = Null;
+            hapus.next = null;
           }
         }
       }

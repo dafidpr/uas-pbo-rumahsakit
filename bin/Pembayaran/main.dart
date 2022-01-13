@@ -2,19 +2,18 @@ import 'dart:io';
 import 'dart:core';
 
 class myClass {
-//   static int umur = 0;
-//   static int no_telp = 0;
 //   static int rawatinap = 0;
 //   static int rawatjalan = 0;
 }
 
 void  main(List<String> args) {
-  const registrationdate = "Senin 12 Desember 2021";
   final date = new DateTime.now();
 
   List<List> listPenyakit = [
-    ['1','Anemia','Antibiotik','2000000'],
-    ['2',' Demam','Paracetamol','100000'],
+    ['1','Anemia','Antibiotik','2000000','3–6 mg/kg,3 times a day'],
+    ['2',' Demam','Paracetamol','100000','0–15 mg/kg,not 4–6 hours'],
+    ['3',' Tipes','Antibiotik','144000','20–90 mg/kgBW per day'],
+    ['4','Difteri','Antibiotik','180000','25–75 mg/kgBW per day'],
   ];
 
   print("--------------------------------------------------------------------------");
@@ -22,10 +21,10 @@ void  main(List<String> args) {
   print("-                              Disease price data                        -");
   print("--------------------------------------------------------------------------");
   print("--------------------------------------------------------------------------");
-  print(" No. | Name Disease  | Medicine                    | Harga              ");
+  print(" No. | Name Disease  | Medicine     | Harga      | Usage Rules            ");
   print("--------------------------------------------------------------------------");
   for(var i = 0; i < listPenyakit.length; i++) {
-    print(" ${i+1}.  | ${listPenyakit[i][1]}       | ${listPenyakit[i][2]}                  | Rp ${listPenyakit[i][3]}");
+    print(" ${i+1}.  | ${listPenyakit[i][1]}       | ${listPenyakit[i][2]}    | Rp ${listPenyakit[i][3]}  | ${listPenyakit[i][4]} ");
   }
   print("--------------------------------------------------------------------------");
   print("Enter the following data :");
@@ -55,14 +54,17 @@ void  main(List<String> args) {
   //input data
   print("Enter Name : ");
   String? nama = stdin.readLineSync();
+  print("Enter Address : ");
+  String? alamat = stdin.readLineSync();
   
-  print("\n----------------------------------------");
-  print("-   Payment Note for taking medicine   -");
-  print("----------------------------------------");
-  print("Nama : ${nama}");
-  print("Tanggal Sekarang : $date");
-  print("Medicine name :  $nmobat"); 
-  print("Total Pay : Rp. $harga ");
+  print("\n----------------------------------------------");
+  print("-        Payment Note for taking medicine      -");
+  print("------------------------------------------------");
+  print("Nama             : ${nama}");
+  print("Address          : $alamat");
+  print("Date now         : $date");
+  print("Medicine name    : $nmobat"); 
+  print("Total Pay        : Rp. $harga ");
   print("----------------------------------------\n");
 }
 

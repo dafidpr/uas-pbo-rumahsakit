@@ -1,13 +1,9 @@
 import 'dart:io';
 import 'dart:core';
 
-class myClass {
-//   static int rawatinap = 0;
-//   static int rawatjalan = 0;
-}
-
 void  main(List<String> args) {
   final date = new DateTime.now();
+  const bdate = "kamis, 14 januari 2022";
 
   List<List> listPenyakit = [
     ['1','Anemia','Antibiotik','2000000','3–6 mg/kg,3 times a day'],
@@ -40,8 +36,10 @@ void  main(List<String> args) {
     if(listPenyakit[i][0] == nomorPenyakit) {
       print('The total price is :Rp. ${listPenyakit[i][3]}\n');
       harga = listPenyakit[i][3];
+      
     }
   }
+  
 
   if(nomorPenyakit != null){
 
@@ -56,15 +54,17 @@ void  main(List<String> args) {
   String? nama = stdin.readLineSync();
   print("Enter Address : ");
   String? alamat = stdin.readLineSync();
+
   
   print("\n----------------------------------------------");
   print("-        Payment Note for taking medicine      -");
   print("------------------------------------------------");
   print("Nama             : ${nama}");
   print("Address          : $alamat");
+  print("registration date: $bdate");
   print("Date now         : $date");
   print("Medicine name    : $nmobat"); 
-  print("Total Pay        : Rp. $harga ");
+  print("Total Pay        : Rp. $harga");
   print("----------------------------------------\n");
 }
 

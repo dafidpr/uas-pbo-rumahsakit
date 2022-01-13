@@ -3,7 +3,7 @@ import 'dart:io';
 
 List Queue = [];
 late int no = 100;
-int? input;
+int? input, sakit;
 antrian antri = antrian();
 
 class antrian {
@@ -30,7 +30,11 @@ void pasien() {
   stdout.write("\tALAMAT PASIEN         : ");
   String? alamat = stdin.readLineSync();
   stdout.write("\tPENYAKIT PASIEN       : ");
-  int? sakit = int.parse(stdin.readLineSync()!);
+  sakit = int.parse(stdin.readLineSync()!);
+  detailsakit();
+}
+
+void detailsakit() {
   switch (sakit) {
     case 1:
       stdout.write("\tDESKRIPSI PENYAKIT    : ");

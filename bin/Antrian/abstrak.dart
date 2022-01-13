@@ -1,4 +1,4 @@
-import 'penanganan.dart';
+import 'interface.dart';
 
 abstract class periksa {
   void jenisPenyakit();

@@ -99,7 +99,6 @@ void panggilAntrian() {
 }
 
 void main(List<String> args) {
-  bool keluar = false;
   pasien();
   while (true) {
     menuAntrian();

@@ -28,22 +28,21 @@ class regristrasiPasien {
 }
 
 void main(List<String> args) {
-  print("Enter nik : ");
+  print(
+      "\n\t====================================================================");
+  print("\t\t\tSELAMAT DATANG DI RUMAH SAKIT DR. SUCIPTO");
+  print(
+      "\t====================================================================");
+  print("\t\t\t\tREGISTRASI PASIEN BARU");
+  stdout.write("\n\tEnter nik : ");
   String? nik = stdin.readLineSync();
-  print("Enter nama : ");
+  stdout.write("\tEnter nama : ");
   String? nama = stdin.readLineSync();
-  print("Enter alamat : ");
+  stdout.write("\tEnter alamat : ");
   String? alamat = stdin.readLineSync();
-  print("Enter poliTujuan : ");
+  stdout.write("\tEnter poliTujuan : ");
   String? poliTujuan = stdin.readLineSync();
   regristrasiPasien pasien =
       new regristrasiPasien(nik, nama, alamat, poliTujuan);
-
-  print(
-      "\n\t=====================================================================");
-  print("\t\t       SELAMAT DATANG DI RUMAH SAKIT DR. SUCIPTO");
-  print(
-      "\n\t=====================================================================");
-  print("\t\t\t  REGISTRASI PASIEN BARU");
   pasien.printOfList();
 }

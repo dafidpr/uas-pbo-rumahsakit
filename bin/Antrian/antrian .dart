@@ -1,9 +1,9 @@
 class Antrian {
-  late Antrian next;
-  late String key, tipe;
+  late Antrian? next;
+  late String tipe, noAntrian;
 
-  Antrian(String data, String pengguna) {
-    key = data;
+  Antrian(String pengguna, String no) {
+    noAntrian = no;
     tipe = pengguna;
     next = null;
   }

@@ -1,7 +1,3 @@
-import 'dart:io';
-
-main() {
-  stdout.write("Siapa kamu: ");
-  var nama = stdin.readLineSync();
-  print("Hello $nama!");
+void main(List<String> args) {
+  print("coba 1");
 }

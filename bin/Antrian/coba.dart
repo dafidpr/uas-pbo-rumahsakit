@@ -1,79 +1,121 @@
-//import 'antrian .dart';
+import 'abstrak.dart';
 import 'dart:io';
 
 List Queue = [];
-late int menu1,
-    poliKebidanan = 0,
-    poliAnak = 0,
-    poliBedahUmum = 0,
-    poliMata = 0,
-    poliKulitKelamin = 0;
+late int no = 100;
+int? input;
+antrian antri = antrian();
 
 class antrian {
-  void add(String tipe, String noAntrian) {
-    Queue.add("$tipe$noAntrian");
+  void add(int noAntrian) {
+    Queue.add("$noAntrian");
+  }
+
+  void delete() {
+    Queue.removeAt(0);
+  }
+
+  void viewMenu() {}
+}
+
+void pasien() {
+  print(
+      "\n\t====================================================================");
+  print("\t\t\tSELAMAT DATANG DI RUMAH SAKIT DR. SUCIPTO");
+  print(
+      "\t====================================================================");
+  daftarpenyakit();
+  stdout.write("\n\tNAMA PASIEN           : ");
+  String? nama = stdin.readLineSync();
+  stdout.write("\tALAMAT PASIEN         : ");
+  String? alamat = stdin.readLineSync();
+  stdout.write("\tPENYAKIT PASIEN       : ");
+  int? sakit = int.parse(stdin.readLineSync()!);
+  switch (sakit) {
+    case 1:
+      stdout.write("\tDESKRIPSI PENYAKIT    : ");
+      mataKering().jenisPenyakit();
+      stdout.write("\tPOLIKLINIK RUJUKAN    : ");
+      mataKering().poliklinik();
+      break;
+    case 2:
+      stdout.write("\tDESKRIPSI PENYAKIT    : ");
+      glaukoma().jenisPenyakit();
+      stdout.write("\tPOLIKLINIK RUJUKAN    : ");
+      glaukoma().poliklinik();
+      break;
+    case 3:
+      stdout.write("\tDESKRIPSI PENYAKIT    : ");
+      sifilis().jenisPenyakit();
+      stdout.write("\tPOLIKLINIK RUJUKAN    : ");
+      sifilis().poliklinik();
+      break;
+    case 4:
+      stdout.write("\tDESKRIPSI PENYAKIT    : ");
+      kurap().jenisPenyakit();
+      stdout.write("\tPOLIKLINIK RUJUKAN    : ");
+      kurap().poliklinik();
+      break;
+    default:
+      print(
+          "\tDATA YANG ANDA MASUKKAN SALAH. SILAKAN MASUKKAN DATA SESUAI DENGAN\n\tDAFTAR KAMI");
   }
 }
 
-void main(List<String> args) {
-  antrian antri = antrian();
-  // add('A', 1);
-  // add('A', 2);
-  // add('A', 3);
-  // print(Queue);
-  // Queue.remove('A1');
-  // print(Queue);
-  while (true) {
-    print(
-        "\n\t====================================================================");
-    print("\t\t\tSELAMAT DATANG DI RUMAH SAKIT DR. SUCIPTO");
-    print(
-        "\t====================================================================");
-    print("\n\tDAFTAR POLIKLINIK RUMAH SAKIT DR. SUCIPTO");
-    print("\t   1. POLI ANAK");
-    print("\t   2. POLI BEDAH UMUM");
-    print("\t   3. POLI KEBIDANAN");
-    print("\t   4. POLI KULIT DAN KELAMIN");
-    stdout.write("\n\tPILIH LAYANAN : ");
-    int? input = int.parse(stdin.readLineSync()!);
-    print("");
+void daftarpenyakit() {
+  print("\n\tDAFTAR PENYAKIT");
+  print("\t   1. MATA KERING");
+  print("\t   2. GLAUKOMA");
+  print("\t   3. SIFILIS");
+  print("\t   4. KURAP");
+}
 
+void menuAntrian() {
+  print(
+      "\t====================================================================");
+  print("\n\tMENU POLIKLINIK RUMAH SAKIT DR. SUCIPTO");
+  print("\t   1. TAMBAH ANTRIAN");
+  print("\t   2. PANGGILAN ANTRIAN");
+  print("\t   3. KELUAR");
+  stdout.write("\n\tPILIH LAYANAN : ");
+  input = int.parse(stdin.readLineSync()!);
+  print("");
+}
+
+void tambahAntrian() {
+  print("\t\t\t\t   NOMOR ANTRIAN");
+  no++;
+  antri.add(no);
+  print("\n\t\t\t\t        $no" + "\n\n\t\t\t      RUMAH SAKIT DR. SUCIPTO");
+}
+
+void panggilAntrian() {
+  print("\t\t\t\t   NOMOR ANTRIAN");
+  print("\n\t\t\t\t        " +
+      Queue[0] +
+      "\n\t\t\t      SILAKAN MENUJU RUANGAN" +
+      "\n\t\t\t      RUMAH SAKIT DR. SUCIPTO");
+  antri.delete();
+}
+
+void main(List<String> args) {
+  bool keluar = false;
+  pasien();
+  while (true) {
+    menuAntrian();
     switch (input) {
       case 1:
-        print("\t\t\t\t   NOMOR ANTRIAN");
-        poliAnak++;
-        antri.add("A", poliAnak.toString());
-        print("\n\t\t\t\t        A" +
-            "$poliAnak" +
-            "\n\n\t\t\t\t    POLI ANAK" +
-            "\n\t\t\t     RUMAH SAKIT DR. SUCIPTO");
+        tambahAntrian();
         break;
       case 2:
-        print("\t\t\t\t   NOMOR ANTRIAN");
-        poliBedahUmum++;
-        antri.add("B", poliBedahUmum.toString());
-        print("\n\t\t\t\t        B" +
-            "$poliBedahUmum" +
-            "\n\n\t\t\t\t POLI BEDAH UMUM" +
-            "\n\t\t\t     RUMAH SAKIT DR. SUCIPTO");
+        panggilAntrian();
         break;
       case 3:
-        print("\t\t\t\t   NOMOR ANTRIAN");
-        poliKebidanan++;
-        antri.add("C", poliKebidanan.toString());
-        print("\n\t\t\t\t        C" +
-            "$poliKebidanan" +
-            "\n\n\t\t\t\t  POLI KEBIDANAN" +
-            "\n\t\t\t     RUMAH SAKIT DR. SUCIPTO");
+        pasien();
         break;
-      case 4:
-        print("\t\t\t\t   NOMOR ANTRIAN");
-        poliKulitKelamin++;
-        antri.add("D", poliKulitKelamin.toString());
-        print("\n\t\t\t\t        C" +
-            "$poliKulitKelamin" +
-            "\n\n\t\t\t      POLI KULIT DAN KELAMIN" +
-            "\n\t\t\t      RUMAH SAKIT DR. SUCIPTO");
+      default:
+        print(
+            "\tDATA YANG ANDA MASUKKAN SALAH. SILAKAN MASUKKAN DATA SESUAI DENGAN\n\tDAFTAR KAMI");
         break;
     }
   }

@@ -29,17 +29,20 @@ Future<List> fetchRoomByCode(String? roomCode) {
 /**
  * Register patient to room
  */
-Future<void> registerRoom() async {
+void registerRoom() async {
   stdout.write("Masukkan kode kamar : ");
   String? roomCode;
   roomCode = stdin.readLineSync();
 
-  print("Loading...");  
-  await fetchRoomByCode(roomCode).then((room) {
+  print("Loading...");
+  fetchRoomByCode(roomCode).then((room) async {
       if (room.isEmpty) {
         alert("Kamar tidak tersedia");
         switchMenu();
       } else {
+
+        await printRoomBySearch(roomCode);
+
         stdout.write("Masukan jumlah bed pesanan : ");
         var bedQuantity = stdin.readLineSync();
         alert("Kamar berhasil dipesan");
@@ -52,7 +55,6 @@ Future<void> registerRoom() async {
  * Print data from list of rooms by room code
  */
 Future<void> printRoomBySearch(String? roomCode) async {
-  print("Loading...");
   List room = await fetchRoomByCode(roomCode);
   if (room.isEmpty) {
     alert("Kamar tidak tersedia");

@@ -1,52 +1,108 @@
 import 'dart:io';
+/**
+ * List of rooms
+ */
+class Room {
+  List<List<String>> roomList = [
+    ["KMR01", "Kelas 1", "Ruang A", "4"],
+    ["KMR02", "Kelas 2", "Ruang B", "3"],
+    ["KMR03", "Kelas 3", "Ruang C", "1"],
+  ];
+}
 
+/**
+ * Fetch data from list of rooms
+ */
+Future<List> fetchRooms() async {
+  await Future.delayed(const Duration(seconds: 2));
+  return Room().roomList;
+}
+/**
+ * Get data from list of rooms by room code
+ */
+Future<List> fetchRoomByCode(String? roomCode) {
+  return fetchRooms().then((rooms) {
+    return rooms.where((room) => room[0] == roomCode).toList();
+  });
+}
+
+/**
+ * Register patient to room
+ */
+void registerRoom() async {
+  stdout.write("Masukkan kode kamar : ");
+  String? roomCode;
+  roomCode = stdin.readLineSync();
+
+  print("Loading...");
+  fetchRoomByCode(roomCode).then((room) async {
+      if (room.isEmpty) {
+        alert("Kamar tidak tersedia");
+        switchMenu();
+      } else {
+
+        await printRoomBySearch(roomCode);
+
+        stdout.write("Masukan jumlah bed pesanan : ");
+        var bedQuantity = stdin.readLineSync();
+        alert("Kamar berhasil dipesan");
+        switchMenu();
+      }
+  });
+}
+
+/**
+ * Print data from list of rooms by room code
+ */
+Future<void> printRoomBySearch(String? roomCode) async {
+  List room = await fetchRoomByCode(roomCode);
+  if (room.isEmpty) {
+    alert("Kamar tidak tersedia");
+  } else {
+    print("====================================================");
+    print("==               Kamar Yang Di Pilih              ==");
+    print("====================================================");
+    print("| Kode  | Kelas   | Ruang   | Jumlah Bed           |");
+    print("====================================================");
+    print(
+        "| ${room[0][0]} | ${room[0][1]} | ${room[0][2]} | ${room[0][3]}                    |");
+    print("====================================================");
+  }
+}
+
+/**
+ * Print list of rooms
+ */
+Future<void> printAllRooms() async {
+  print("Loading...");
+  List rooms = await fetchRooms();
+  print("====================================================");
+  print("==                   Daftar Kamar                 ==");
+  print("====================================================");
+  print("| No. | Kode | Kelas | Ruang    | Jumlah Bed       |");
+  print("====================================================");
+  for (int i = 0; i < rooms.length; i++) {
+    print("| ${i + 1} | ${rooms[i][0]} | ${rooms[i][1]} | ${rooms[i][2]} | ${rooms[i][3]}                |");
+  }
+  print("====================================================");
+  switchMenu();
+}
+
+/**
+ * Print header application
+ */
 void header() {
   print("========================================================");
   print("== Selamat Datang di Aplikasi SIRANAP RS. Dr. Sucipto ==");
   print("========================================================");
 }
 
-List listOfKamar() {
-  // create list 3
-  List<List<String>> listKamar = [
-    ["KMR01", "Kelas 1", "Ruang A", "4"],
-    ["KMR02", "Kelas 2", "Ruang B", "3"],
-    ["KMR03", "Kelas 3", "Ruang C", "1"],
-  ];
-  return listKamar;
-}
-
-// print list of kamar with table
-void printListKamar(List listKamar) {
-  // List listKamar = listOfKamar();
-  print("====================================================");
-  print("==                   Daftar Kamar                 ==");
-  print("====================================================");
-  print("| No. | Kode | Kelas | Ruang    | Jumlah Bed       |");
-  print("====================================================");
-  for (int i = 0; i < listKamar.length; i++) {
-    print(
-        "| ${i + 1} | ${listKamar[i][0]} | ${listKamar[i][1]} | ${listKamar[i][2]} | ${listKamar[i][3]}                |");
-  }
-  print("====================================================");
-  switchMenu();
-}
-void printAll() {
-  List listKamar = listOfKamar();
-  print("====================================================");
-  print("==                   Daftar Kamar                 ==");
-  print("====================================================");
-  print("| No. | Kode | Kelas | Ruang    | Jumlah Bed       |");
-  print("====================================================");
-  for (int i = 0; i < listKamar.length; i++) {
-    print("| ${i + 1} | ${listKamar[i][0]} | ${listKamar[i][1]} | ${listKamar[i][2]} | ${listKamar[i][3]}                |");
-  }
-  print("====================================================");
-  switchMenu();
-}
-
-// create method show menu
+/**
+ * Print menu
+ * 
+ */
 void showMenu() {
+  header();
   print("====================================================");
   print("==              Menu Aplikasi SIRANAP             ==");
   print("====================================================");
@@ -54,67 +110,39 @@ void showMenu() {
   print("| 2. Pendaftaran Kamar                             |");
   print("| 3. Exit                                          |");
   print("====================================================");
-}
-
-void listKamar(String? kodeKamar) {
-  // search kamar by kode
-  List listKamar = listOfKamar();
-  for (int i = 0; i < listOfKamar().length; i++) {
-    if (listKamar[i][0] == kodeKamar) {
-      print("====================================================");
-      print("==               Kamar Yang Di Pilih              ==");
-      print("====================================================");
-      print("| Kode  | Kelas   | Ruang   | Jumlah Bed           |");
-      print("====================================================");
-      print(
-          "| ${listKamar[i][0]} | ${listKamar[i][1]} | ${listKamar[i][2]} | ${listKamar[i][3]}                    |");
-      print("====================================================");
-    }
-  }
   switchMenu();
 }
 
-void daftarKamar() {
-  List listKamar1 = listOfKamar();
-  stdout.write("Masukkan kode kamar : ");
-  String? kodeKamar;
-  kodeKamar = stdin.readLineSync();
-  stdout.write("Masukan jumlah bed pesanan : ");
-  var jumlahBed;
-  jumlahBed = stdin.readLineSync();
-  // search kamar by jumlah bed
-  for (int i = 0; i < listOfKamar().length; i++) {
-    if (listKamar1[i][0] == kodeKamar) {
-      // paser jumlahBed tstring to int
-      var hasil = int.parse(listKamar1[i][3]) - int.parse(jumlahBed);
-      listKamar1[i][3] = hasil.toString();
-    }
-  }
-
-  printListKamar(listKamar1);
-  switchMenu();
+/**
+ * Print alert
+ */
+void alert(String message) {
+  print("===================================================");
+  print("            $message            ");
+  print("===================================================");
 }
 
-void switchMenu() {
-  showMenu();
+/**
+ * Switch menu
+ */
+void switchMenu() async {
   stdout.write("Masukkan pilihan menu : ");
-  var pilihan;
-  pilihan = stdin.readLineSync();
-  switch (pilihan) {
+  var menu;
+  menu = stdin.readLineSync();
+  switch (menu) {
     case "1":
-      printAll();
+      await printAllRooms();
       break;
     case "2":
-      daftarKamar();
+      registerRoom();
       break;
     case "3":
       break;
     default:
-      print("Pilihan tidak ada");
+      print("Menu isn't available");
   }
 }
 
 void main(List<String> args) {
-  header();
-  switchMenu();
+  showMenu();
 }

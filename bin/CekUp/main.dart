@@ -1,6 +1,6 @@
 import 'dart:io';
 
-class CheckUp {
+abstract class CheckUp {
   String? _tekanandarah;
   String? _kolestroldanguladarah;
   String? _tesdarah;
@@ -41,6 +41,8 @@ class CheckUp {
   void set hasilpemeriksaan(String? hasilpemeriksaan) {
     _hasilpemeriksaan = hasilpemeriksaan;
   }
+
+  void printCheckUp();
 }
 
 class Daftar extends CheckUp {
@@ -50,6 +52,7 @@ class Daftar extends CheckUp {
     daftarCekUp.add(cekup);
   }
 
+  @override
   void printCheckUp() {
     for (var i = 0; i < daftarCekUp.length; i++) {
       print(

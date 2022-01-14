@@ -35,18 +35,20 @@ void  main(List<String> args) {
   for(var i = 0; i < listPenyakit.length; i++) {
     if(listPenyakit[i][0] == nomorPenyakit) {
       print('The total price is :Rp. ${listPenyakit[i][3]}\n');
-      harga = listPenyakit[i][3];
-      
+      harga = listPenyakit[i][3]; 
     }
   }
   
-
   if(nomorPenyakit != null){
 
   print("Enter the amount paid : Rp.");
   String? jumlahBayar = stdin.readLineSync();
   var kembalian = int.parse(jumlahBayar.toString()) - int.parse(harga);
   print("Return : Rp ${kembalian}\n");
+  }
+
+  for(int i = 1000; i <  ){
+
   }
 
   //input data

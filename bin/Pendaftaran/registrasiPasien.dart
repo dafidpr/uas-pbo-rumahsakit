@@ -1,7 +1,7 @@
 import 'dart:io';
 
 //inheritance class parent
-class Pasien {
+abstract class Pasien {
   //instansiasi properti nik,nama,alamat,umur dan poliTujuan bersifat privat
   String? _nik;
   String? _nama;
@@ -33,6 +33,8 @@ class Pasien {
   void set poli(String? poliTujuan) {
     _poliTujuan = poliTujuan;
   }
+
+  void printPasien();
 }
 
 //class child
@@ -46,6 +48,8 @@ class Registrasi extends Pasien {
   }
 
 //method yang berfungsi untuk menampilkan seluruh data pasien yang telah ditambahkan
+//polimorfisme
+  @override
   void printPasien() {
     for (var i = 0; i < listPasien.length; i++) {
       print(

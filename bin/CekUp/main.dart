@@ -58,16 +58,17 @@ class Daftar extends CheckUp {
       print(
           "\n\t--------------------------------------------------------------");
       print(" \t\t\t      HASIL AKHIR PEMERIKSAAN PASIEN \n");
-      print("JUMLAH TEKANAN DARAH : ${daftarCekUp[i]._tekanandarah}");
+      print("\t JUMLAH TEKANAN DARAH : ${daftarCekUp[i]._tekanandarah}");
       print(
-          "JUMLAH KOLESTROL DAN GULA DARAH : ${daftarCekUp[i]._kolestroldanguladarah}");
-      print("HASIL TES DARAH PASIEN : ${daftarCekUp[i]._tesdarah}");
+          "\t JUMLAH KOLESTROL DAN GULA DARAH : ${daftarCekUp[i]._kolestroldanguladarah}");
+      print("\t HASIL TES DARAH PASIEN : ${daftarCekUp[i]._tesdarah}");
       print(
-          "HASIL PEMERIKSAAN JANTUNG : ${daftarCekUp[i]._pemeriksaanjantung}");
-      print("HASIL PEMERIKSAAN MATA : ${daftarCekUp[i]._pemeriksaanmata}");
-      print("KELUHAN YANG DIALAMI PASIEN : ${daftarCekUp[i]._keluhanpasien}");
-      print("DIAGNOSA PENYAKIT :  ${daftarCekUp[i]._diagnosa}");
-      print("KESIMPULAN : ${daftarCekUp[i]._hasilpemeriksaan}");
+          "\t HASIL PEMERIKSAAN JANTUNG : ${daftarCekUp[i]._pemeriksaanjantung}");
+      print("\t HASIL PEMERIKSAAN MATA : ${daftarCekUp[i]._pemeriksaanmata}");
+      print(
+          "\t KELUHAN YANG DIALAMI PASIEN : ${daftarCekUp[i]._keluhanpasien}");
+      print("\t DIAGNOSA PENYAKIT :  ${daftarCekUp[i]._diagnosa}");
+      print("\t KESIMPULAN : ${daftarCekUp[i]._hasilpemeriksaan}");
     }
   }
 }
@@ -79,28 +80,28 @@ void main() {
   print("\t\t\tINPUT PEMERIKSAAN PASIEN");
   print(
       "\t====================================================================");
-  stdout.write("Tekanan Darah : ");
+  stdout.write("\t Tekanan Darah : ");
   String? tekananDarah = stdin.readLineSync();
   daftar.tekanandarah = tekananDarah;
-  stdout.write("Kolestrol dan Gula Darah : ");
+  stdout.write("\t Kolestrol dan Gula Darah : ");
   String? kolestrol = stdin.readLineSync();
   daftar.kolestroldanguladarah = kolestrol;
-  stdout.write("Tes Darah : ");
+  stdout.write("\t Tes Darah : ");
   String? tesDarah = stdin.readLineSync();
   daftar.tesdarah = tesDarah;
-  stdout.write("Pemeriksaan Jantung : ");
+  stdout.write("\t Pemeriksaan Jantung : ");
   String? jantung = stdin.readLineSync();
   daftar.pemeriksaanjantung = jantung;
-  stdout.write("Pemeriksan Mata : ");
+  stdout.write("\t Pemeriksan Mata : ");
   String? mata = stdin.readLineSync();
   daftar.pemeriksaanjantung = mata;
-  stdout.write("Keluhan Pasien : ");
+  stdout.write("\t Keluhan Pasien : ");
   String? keluhan = stdin.readLineSync();
   daftar.keluhanpasien = keluhan;
-  stdout.write("Diagnosa Penyakit : ");
+  stdout.write("\t Diagnosa Penyakit : ");
   String? diagnos = stdin.readLineSync();
   daftar.diagnosa = diagnos;
-  stdout.write("Hasil Pemeriksaan : ");
+  stdout.write("\t Hasil Pemeriksaan : ");
   String? hasil = stdin.readLineSync();
   daftar.hasilpemeriksaan = hasil;
 

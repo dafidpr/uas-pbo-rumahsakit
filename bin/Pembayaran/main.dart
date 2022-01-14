@@ -40,15 +40,10 @@ void  main(List<String> args) {
   }
   
   if(nomorPenyakit != null){
-
   print("Enter the amount paid : Rp.");
   String? jumlahBayar = stdin.readLineSync();
   var kembalian = int.parse(jumlahBayar.toString()) - int.parse(harga);
   print("Return : Rp ${kembalian}\n");
-  }
-
-  for(int i = 1000; i <  ){
-
   }
 
   //input data
@@ -57,7 +52,6 @@ void  main(List<String> args) {
   print("Enter Address : ");
   String? alamat = stdin.readLineSync();
 
-  
   print("\n----------------------------------------------");
   print("-        Payment Note for taking medicine      -");
   print("------------------------------------------------");

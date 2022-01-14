@@ -1,76 +1,96 @@
-import 'dart:ffi';
 import 'dart:io';
 
-//inheritance class parents
-abstract class Pasien {
-  void info();
+//inheritance class parent
+class Pasien {
+  //instansiasi properti nik,nama,alamat,umur dan poliTujuan bersifat privat
+  String? _nik;
+  String? _nama;
+  String? _alamat;
+  String? _umur;
+  String? _poliTujuan;
+
+//meng-assign nik
+  void set identitas(String? nik) {
+    _nik = nik;
+  }
+
+//meng-assign nama
+  void set nama(String? nama) {
+    _nama = nama;
+  }
+
+//meng-assign alamat
+  void set alamat(String? alamat) {
+    _alamat = alamat;
+  }
+
+//meng-assign umur
+  void set umur(String? umur) {
+    _umur = umur;
+  }
+
+//meng-assign poliTujuan
+  void set poli(String? poliTujuan) {
+    _poliTujuan = poliTujuan;
+  }
 }
 
 //class child
 class Registrasi extends Pasien {
-  List<List<String?>> listPasien = [];
-  List<String?> pasien = [];
-  String? nik;
-  String? nama;
-  String? alamat;
-  String? _umur;
-  String? poliTujuan;
+  //array list pasien
+  List<Pasien> listPasien = [];
 
-  //constrctor
-  Registrasi(String? nik, String? nama, String? alamat,  String? poliTujuan) {
-    this.pasien.add(nik);
-    this.pasien.add(nama);
-    this.pasien.add(alamat);
-    this.pasien.add(this._umur);
-    this.pasien.add(poliTujuan);
-    this.listPasien.add(pasien);
-  }
-  void set umur(String? umur) {
-    this._umur = umur;
+//construktor
+  void addPasien(Pasien pasien) {
+    listPasien.add(pasien);
   }
 
-  @override
-  void info() {
-    for (var i = 0; i < this.listPasien.length; i++) {
-      print("\n\t-----------------------------------------------------------\n"
-          " \t\t\t         REGISTRASI PASIEN BARU \n"
-          "\t NIK : ${this.listPasien[i][0]} \n "
-          "\t Nama :  ${this.listPasien[i][1]} \n"
-          "\t Alamat : ${this.listPasien[i][2]} \n"
-          "\t Umur : ${this.listPasien[i][3]} \n"
-          "\t Poli Tujuan :  ${this.listPasien[i][4]} \n"
-          "\n\t-----------------------------------------------------------\n");
+//method yang berfungsi untuk menampilkan seluruh data pasien yang telah ditambahkan
+  void printPasien() {
+    for (var i = 0; i < listPasien.length; i++) {
+      print(
+          "\n\t--------------------------------------------------------------");
+      print(" \t\t\t      REGISTRASI PASIEN BARU \n");
+      print("\t NIK         :  ${listPasien[i]._nik}");
+      print("\t NAMA        : ${listPasien[i]._nama}");
+      print("\t ALAMAT      : ${listPasien[i]._alamat}");
+      print("\t UMUR        : ${listPasien[i]._umur}");
+      print("\t POLI TUJUAN : ${listPasien[i]._poliTujuan}");
+
+      print(
+          "\n\t====================================================================");
+      print("\t\t\tSILAHKAN AMBIL NOMOR ANTRIAN ANDA ");
+      print(
+          "\t====================================================================");
     }
-
-    // void addPasien() {
-    //   this.pasien.add(this.nik);
-    //   this.pasien.add(this.nama);
-    //   this.pasien.add(this.alamat);
-    //   this.pasien.add(this.umur);
-    //   this.pasien.add(this.poli);
-    //   this.listPasien.add(pasien);
   }
 }
 
-void main(List<String> args) {
+void main() {
+  Registrasi registrasi = new Registrasi();
   print(
       "\n\t====================================================================");
   print("\t\t\tSELAMAT DATANG DI RUMAH SAKIT DR. SUCIPTO");
   print(
       "\t====================================================================");
-  print("\t\t\t\tINPUT DATA PASIEN ");
-  stdout.write("\n\tEnter nik : ");
-  String? nik = stdin.readLineSync();
-  stdout.write("\tEnter nama : ");
+  print("\n\t\t\t\tINPUT DATA PASIEN ");
+  stdout.write("\n\tMasukkan NIK pasien   : ");
+  String? nomorIdentitas = stdin.readLineSync();
+  registrasi.identitas = nomorIdentitas;
+  stdout.write("\tMasukkan nama pasien    : ");
   String? nama = stdin.readLineSync();
-  stdout.write("\tEnter alamat : ");
+  registrasi.nama = nama;
+  stdout.write("\tMasukkan alamat pasien  : ");
   String? alamat = stdin.readLineSync();
-  stdout.write("\tEnter umur : ");
+  registrasi.alamat = alamat;
+  stdout.write("\tMasukkan umur pasien    : ");
   String? umur = stdin.readLineSync();
-  stdout.write("\tEnter poliTujuan : ");
+  registrasi.umur = umur;
+  stdout.write("\tMasukkan poli pasien    : ");
   String? poliTujuan = stdin.readLineSync();
-  Registrasi
-  Registrasi pasien = new Registrasi(nik, nama, alamat, umur, poliTujuan);
+  registrasi.poli = poliTujuan;
 
-  pasien.info();
+  registrasi.addPasien(registrasi);
+
+  registrasi.printPasien();
 }

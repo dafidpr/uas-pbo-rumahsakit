@@ -1,6 +1,8 @@
 import 'dart:io';
 
+//abstract class sebagai kelas parents
 abstract class CheckUp {
+  //variabel
   String? _tekanandarah;
   String? _kolestroldanguladarah;
   String? _tesdarah;
@@ -10,6 +12,8 @@ abstract class CheckUp {
   String? _diagnosa;
   String? _hasilpemeriksaan;
 
+  //setter
+  //String? tekanan darah = parameter
   void set tekanandarah(String? tekanandarah) {
     _tekanandarah = tekanandarah;
   }
@@ -42,16 +46,21 @@ abstract class CheckUp {
     _hasilpemeriksaan = hasilpemeriksaan;
   }
 
+  //polimorpihsm
   void printCheckUp();
 }
 
+//class daftar = child
+//checkup = parents
 class Daftar extends CheckUp {
   List<CheckUp> daftarCekUp = [];
 
+  //mengisi nilai array daftarcekup
   void addCheckUp(CheckUp cekup) {
     daftarCekUp.add(cekup);
   }
 
+  //menampilkan daftarcekup
   @override
   void printCheckUp() {
     for (var i = 0; i < daftarCekUp.length; i++) {
@@ -73,6 +82,7 @@ class Daftar extends CheckUp {
   }
 }
 
+//mengisi nilai daftar array
 void main() {
   Daftar daftar = new Daftar();
   print(
@@ -105,7 +115,9 @@ void main() {
   String? hasil = stdin.readLineSync();
   daftar.hasilpemeriksaan = hasil;
 
+  //memanggil method checkup
   daftar.addCheckUp(daftar);
 
+  //menampilkan daftar printcheckup
   daftar.printCheckUp();
 }
